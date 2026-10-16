@@ -1,5 +1,5 @@
 name: gg_interact
-description: Interactive terminal prompts for the gg suite: select, input and confirm with headless detection.
+description: Interactive terminal prompts for the gg suite - select, input and confirm, with headless detection.
 version: 0.0.1
 repository: https://github.com/ggsuite/gg_interact.git
 
