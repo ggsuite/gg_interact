@@ -9,3 +9,4 @@
 ### Changed
 
 - Check stdin and stdout before asking
+- Name stdin and stdout when there is no terminal

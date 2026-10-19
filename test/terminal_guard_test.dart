@@ -10,7 +10,7 @@ import 'package:test/test.dart';
 
 void main() {
   group('throwWhenNotATerminal', () {
-    test('throws an actionable error when stdin is not a terminal', () {
+    test('throws an actionable error without a terminal', () {
       // The headless situation the guard protects against. The check is
       // injected because `dart test` hands the test isolate a stdin whose
       // `hasTerminal` differs per platform — on macOS it reports true.
@@ -25,7 +25,7 @@ void main() {
             (e) => rmControls(e.toString()),
             'message',
             allOf(
-              contains('stdin is not a terminal'),
+              contains('stdin or stdout is not a terminal'),
               contains('the version-increment prompt'),
               contains('provide version_increment'),
             ),
@@ -34,7 +34,7 @@ void main() {
       );
     });
 
-    test('does not throw when stdin is a terminal', () {
+    test('does not throw on a terminal', () {
       expect(
         () => throwWhenNotATerminal(
           'the version-increment prompt',
