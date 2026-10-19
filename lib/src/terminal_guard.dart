@@ -11,9 +11,15 @@ import 'package:gg_console_colors/gg_console_colors.dart';
 /// Signature of the check whether stdin is attached to a terminal.
 typedef HasTerminal = bool Function();
 
-/// The real check, asking the process' stdin.
+/// Whether stdin alone is a terminal.
 // coverage:ignore-start
 bool defaultHasTerminal() => stdin.hasTerminal;
+// coverage:ignore-end
+
+/// Whether a user can answer: stdin to read and stdout to draw on. On
+/// Windows stdin reports a terminal even when nobody sees the output.
+// coverage:ignore-start
+bool stdioHasTerminal() => stdin.hasTerminal && stdout.hasTerminal;
 // coverage:ignore-end
 
 /// Throws when stdin is not a terminal, so headless runs (CI, scripts,
@@ -28,7 +34,7 @@ bool defaultHasTerminal() => stdin.hasTerminal;
 void throwWhenNotATerminal(
   String what,
   String alternative, {
-  HasTerminal hasTerminal = defaultHasTerminal,
+  HasTerminal hasTerminal = stdioHasTerminal,
 }) {
   if (!hasTerminal()) {
     throw Exception(

@@ -51,10 +51,8 @@ abstract class GgPrompts {
     bool asMessageEditor = false,
   });
 
-  /// Asks a yes/no question and returns whether the user said yes.
-  ///
-  /// Built on [select], so an embedder that answers [select] answers this
-  /// too. [defaultValue] decides which answer is preselected.
+  /// Asks a yes/no question and returns whether the user said yes. Built
+  /// on [select]; [defaultValue] decides which answer is preselected.
   Future<bool> confirm({required String prompt, bool defaultValue = true}) =>
       select(
         prompt: prompt,
@@ -62,12 +60,9 @@ abstract class GgPrompts {
         initialIndex: defaultValue ? 0 : 1,
       ).then((index) => index == 0);
 
-  /// Asks for a line of text until [validate] accepts it.
-  ///
-  /// [validate] returns `null` for a valid answer and the reason otherwise.
-  /// The reason is handed to [onInvalid] — usually the logger — before the
-  /// question is asked again. The answer is trimmed before it is validated
-  /// and returned.
+  /// Asks for a line of text until [validate] returns `null` for the
+  /// trimmed answer; every other result is a reason, handed to [onInvalid]
+  /// before the question is asked again.
   Future<String> inputUntilValid({
     required String prompt,
     required String? Function(String answer) validate,
