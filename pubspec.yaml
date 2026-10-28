@@ -1,6 +1,6 @@
 name: gg_interact
 description: Interactive terminal prompts for the gg suite - select, input and confirm, with headless detection.
-version: 0.0.2
+version: 0.1.0
 repository: https://github.com/ggsuite/gg_interact.git
 
 environment:
@@ -11,8 +11,8 @@ dependencies:
   interact: ^2.2.0
 
 dev_dependencies:
-  dna_ggsuite: ^0.5.0
+  dna_ggsuite: ^1.0.0
   gg_status_printer: ^1.6.3
-  helix: ^1.13.0
+  helix: ^1.14.0
   lints: ^6.1.0
   test: ^1.33.0

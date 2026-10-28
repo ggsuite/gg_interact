@@ -1,0 +1,37 @@
+// @license
+// Copyright (c) ggsuite
+//
+// Use of this source code is governed by terms that can be
+// found in the LICENSE file in the root of this package.
+
+{
+  // The package name, as declared in pubspec.yaml / package.json.
+  "name": "gg_interact",
+
+  // 1-2 sentence summary about this repo.
+  "summary": "Interactive terminal prompts of the gg suite: select, input, confirm, editText in an external editor, headless detection.",
+
+  // 1-3 bullet points: the problem space.
+  "domain": [
+    "prompts: GgPrompts.current, select, input, confirm, inputUntilValid; replaceable by embedders and tests",
+    "ExternalEditor, GgPrompts.editText: text in VS Code via code --wait, else GG_EDITOR/VISUAL/EDITOR; null without terminal or editor",
+    "headless guard: throwWhenNotATerminal, stdioHasTerminal; Wasm: GgPromptsUnsupportedError",
+  ],
+
+  // The repos this one depends on and the repos depending on it.
+  // Keep the reason or the API behind each entry, not just the name.
+  "interfaces": {
+    // "<repo-a>": "why / API"
+    "uses": {
+      "gg_console_colors": "colored prompts, editor hints",
+      "dna_ggsuite": "dev: DNA layer: guides, templates",
+      "helix": "dev: runDnaTest",
+    },
+
+    // "<repo-b>": "why / API"
+    "usedBy": {
+      "gg_one_core": "re-exports gg_interact; editText for MessageSheet, select for VersionSelector",
+      "gg_create_repo": "GgPrompts.confirm, DNA questions",
+    },
+  },
+}

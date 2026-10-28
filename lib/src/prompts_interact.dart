@@ -9,7 +9,9 @@ import 'dart:io';
 import 'package:gg_console_colors/gg_console_colors.dart';
 import 'package:interact/interact.dart';
 
+import 'external_editor.dart';
 import 'prompts.dart';
+import 'terminal_guard.dart';
 
 /// SGR sequence switching the terminal back to its default colors.
 const String colorOff = '\x1B[0m';
@@ -211,6 +213,18 @@ class InteractPrompts extends GgPrompts {
       stdout.write(colorOff);
     }
   }
+
+  /// Opens the [ExternalEditor], but only for a user at a terminal: without
+  /// one nobody closes the editor, and gg would wait forever.
+  @override
+  Future<String?> editText({
+    required String prompt,
+    required String text,
+    required String fileName,
+  }) async => stdioHasTerminal()
+      ? ExternalEditor(log: (message) => stdout.writeln(yellow(message)))
+            .edit(prompt: prompt, text: text, fileName: fileName)
+      : null;
 }
 
 // coverage:ignore-end
