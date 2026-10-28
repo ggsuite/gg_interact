@@ -9,4 +9,4 @@
 // coverage:ignore-file
 
 /// The version of the `gg_interact` package.
-const String ggInteractVersion = '0.0.2';
+const String ggInteractVersion = '0.1.0';
