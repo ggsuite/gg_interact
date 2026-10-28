@@ -114,6 +114,19 @@ void main() {
     });
 
     // #########################################################################
+    group('editText()', () {
+      test('answers null unless a platform can open an editor', () async {
+        // An embedder implementing only select and input must keep working:
+        // a null answer makes the caller ask with input instead.
+        const scripted = _ScriptedPrompts(0);
+        expect(
+          await scripted.editText(prompt: 'p', text: 't', fileName: 'f.txt'),
+          isNull,
+        );
+      });
+    });
+
+    // #########################################################################
     group('confirm()', () {
       test('is yes when the first option is picked', () async {
         expect(await const _ScriptedPrompts(0).confirm(prompt: 'Ok?'), true);

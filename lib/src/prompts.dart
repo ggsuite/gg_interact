@@ -51,6 +51,21 @@ abstract class GgPrompts {
     bool asMessageEditor = false,
   });
 
+  /// Lets the user edit [text] as a whole file in their editor and returns
+  /// what they saved — or null when no editor can be opened here.
+  ///
+  /// [fileName] is the name the editor shows; its extension picks the
+  /// highlighting. [prompt] tells the user what to do while gg waits.
+  ///
+  /// Not a primitive: it answers null unless a platform can open an editor,
+  /// so an embedder implementing only [select] and [input] keeps working —
+  /// the caller asks its questions one by one with [input] instead.
+  Future<String?> editText({
+    required String prompt,
+    required String text,
+    required String fileName,
+  }) async => null;
+
   /// Asks a yes/no question and returns whether the user said yes. Built
   /// on [select]; [defaultValue] decides which answer is preselected.
   Future<bool> confirm({required String prompt, bool defaultValue = true}) =>

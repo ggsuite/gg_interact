@@ -7,6 +7,7 @@
 /// Interactive terminal prompts for the gg suite.
 library;
 
+export 'src/external_editor.dart';
 export 'src/prompts.dart';
 export 'src/prompts_interact.dart'
     if (dart.library.js_interop) 'src/prompts_unsupported.dart'
