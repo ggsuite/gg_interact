@@ -33,7 +33,4 @@ The prompts every gg command asks its questions with.
 `gg_one_core` re-exports this package unchanged.
 
 <!-- helix:claude_md:start -->
-
-@.claude/CLAUDE_dna_gg.md
-
 <!-- helix:claude_md:end -->
