@@ -11,8 +11,8 @@ dependencies:
   interact: ^2.2.0
 
 dev_dependencies:
-  dna_ggsuite: ^2.0.0
+  dna_ggsuite: ^3.0.0
   gg_status_printer: ^1.6.4
-  helix: ^1.15.2
+  helix: ^1.18.0
   lints: ^6.1.0
   test: ^1.33.0
