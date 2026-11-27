@@ -373,6 +373,22 @@ void main() {
         );
       }, skip: !isWindows);
 
+      test('tries a name with an extension as it is on Windows', () {
+        // A name with a folder is looked up only there, so this runs on
+        // every host.
+        final file = '${dir.path}/code.exe';
+        File(file).writeAsStringSync('');
+        expect(
+          ExternalEditor.findOnPath(
+            file,
+            path: '',
+            isWindows: true,
+            pathExt: '.CMD',
+          ),
+          file,
+        );
+      });
+
       test('looks a name with a folder up only there', () {
         final file = '${dir.path}${Platform.pathSeparator}my editor.exe';
         File(file).writeAsStringSync('');
